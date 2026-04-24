@@ -1,0 +1,48 @@
+====================================================================
+Artigo PQ: distribuições truncadas — Poincaré e Madoff
+====================================================================
+
+[1] Parábola do padeiro
+----------------------------------------
+Ano 1 — média observada: 944.43 g,  σ: 48.73 g
+Ano 2 (truncado) — média: 1023.38 g,  σ: 20.12 g
+Ano 2 — skewness: 1.275,  excess kurtosis: 1.526
+Shapiro-Wilk ano 1: W=0.9960, p=0.4751
+Shapiro-Wilk ano 2: W=0.8868, p=8.923e-16
+Momentos teóricos (trunc. esq. em 1000): μ_T=1026.26, σ_T=22.31
+
+[2] Caso Madoff — Fairfield Sentry
+----------------------------------------
+N = 215 meses;  Sharpe anualizado (Rf=4%): 2.47
+Sob N(0.84%, 0.71%): P(R<0) = 0.118 → esperado 25.5 meses negativos
+P(≤10 meses neg.) sob a própria distribuição reportada: 0.000234
+Sob σ honesto (8% a.a.): P(R<0) = 0.358 → esperado 77.0; P(≤10)=6.18e-28
+Bound Bernard-Boyle para split-strike legítimo: Sharpe ≈ 0.66
+Observado: 2.47  (≈ 3.7x o teto teórico)
+
+[3] Testes de formato (série sintética calibrada)
+----------------------------------------
+Série honesta (σ ano 8%): μ=0.0062, σ=0.0241, skew=-0.18, % neg=37.7%
+Série Madoff sintética:  μ=0.0084, σ=0.0071, skew=0.36, % neg=8.8%
+[honesta]  JB=1.27 (p=0.53);  SW W=0.9951 (p=0.726);  AD A²=0.28 (p=0.956)
+[Madoff ]  JB=5.67 (p=0.0588);  SW W=0.9825 (p=0.00908);  AD A²=1.22 (p=0.259)
+
+[4] MLE corrigido de Cohen (1950)
+----------------------------------------
+Estimativa ingênua (ignora truncagem): μ̂=1003.10, σ̂=27.47
+Estimativa de Cohen (corrigida):       μ̂=927.73, σ̂=56.99
+Verdadeiros parâmetros:                μ =950.00, σ =50.00
+
+[5] Viés de σ por circuit breaker (simulação)
+----------------------------------------
+Fração de dias de halt: 1.48%  (σ verdadeiro 4.50%)
+σ estimado usando dados censurados: 0.0438  (viés -2.61%)
+σ estimado deletando dias de halt:  0.0424  (viés -5.77%)
+
+Cauda gorda (t-Student ν=4): frac halt 1.80%,  σ verdadeiro 0.0450
+  σ com dados censurados: 0.0423  (viés -5.98%)
+  σ deletando dias de halt:  0.0404  (viés -10.17%)
+
+====================================================================
+Fim da análise.
+====================================================================
